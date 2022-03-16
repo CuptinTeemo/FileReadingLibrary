@@ -41,9 +41,10 @@ namespace FileReadingLibrary
                         {
                             Output.Text = string.Empty;
                             string[] lines = File.ReadAllLines(ofd.FileName);
-                            for (int i = 0; i < Math.Min(MAX_XML_LINE, lines.Count()); i++)
+                            int MaxLines = Role.SelectedItem == "Administrator" ? lines.Count() : Math.Min(MAX_XML_LINE, lines.Count());
+                            for (int i = 0; i < MaxLines; i++)
                             {
-                                Output.Text += lines[i] + "\n";
+                                Output.Text += (Encrypted.Checked ? Reverse(lines[i]) : lines[i]) + "\n";
                             }
                         }
                     }
@@ -85,20 +86,9 @@ namespace FileReadingLibrary
             }
         }
 
-        private void Encrypted_CheckedChanged(object sender, EventArgs e)
-        {
-            if (Encrypted.Checked)
-            {
-                RoleBasedSecurityContext.Checked = false;
-            }
-        }
-
         private void RoleBasedSecurityContext_CheckedChanged(object sender, EventArgs e)
         {
-            if (RoleBasedSecurityContext.Checked)
-            {
-                Encrypted.Checked = false;
-            }
+            Role.Visible = RoleBasedSecurityContext.Checked;
         }
     }
 }

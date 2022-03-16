@@ -32,6 +32,7 @@
             this.Output = new System.Windows.Forms.RichTextBox();
             this.Encrypted = new System.Windows.Forms.CheckBox();
             this.RoleBasedSecurityContext = new System.Windows.Forms.CheckBox();
+            this.Role = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // OpenFile
@@ -62,7 +63,6 @@
             this.Encrypted.TabIndex = 3;
             this.Encrypted.Text = "Encrypted";
             this.Encrypted.UseVisualStyleBackColor = true;
-            this.Encrypted.CheckedChanged += new System.EventHandler(this.Encrypted_CheckedChanged);
             // 
             // RoleBasedSecurityContext
             // 
@@ -76,11 +76,24 @@
             this.RoleBasedSecurityContext.UseVisualStyleBackColor = true;
             this.RoleBasedSecurityContext.CheckedChanged += new System.EventHandler(this.RoleBasedSecurityContext_CheckedChanged);
             // 
+            // Role
+            // 
+            this.Role.FormattingEnabled = true;
+            this.Role.Items.AddRange(new object[] {
+            "Adminstrator",
+            "Others"});
+            this.Role.Location = new System.Drawing.Point(407, 12);
+            this.Role.Name = "Role";
+            this.Role.Size = new System.Drawing.Size(121, 21);
+            this.Role.TabIndex = 5;
+            this.Role.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Role);
             this.Controls.Add(this.RoleBasedSecurityContext);
             this.Controls.Add(this.Encrypted);
             this.Controls.Add(this.Output);
@@ -98,6 +111,7 @@
         private System.Windows.Forms.RichTextBox Output;
         private System.Windows.Forms.CheckBox Encrypted;
         private System.Windows.Forms.CheckBox RoleBasedSecurityContext;
+        private System.Windows.Forms.ComboBox Role;
     }
 }
 
