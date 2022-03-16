@@ -35,13 +35,13 @@ namespace FileReadingLibrary
             {
                 if (RoleBasedSecurityContext.Checked)
                 {
-                    using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "XML Documents|*.xml", Multiselect = false, ValidateNames = true })
+                    using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Text Documents|*.txt|XML Documents|*.xml", Multiselect = false, ValidateNames = true })
                     {
                         if (ofd.ShowDialog() == DialogResult.OK)
                         {
                             Output.Text = string.Empty;
                             string[] lines = File.ReadAllLines(ofd.FileName);
-                            for (int i = 0; i < MAX_XML_LINE; i++)
+                            for (int i = 0; i < Math.Min(MAX_XML_LINE, lines.Count()); i++)
                             {
                                 Output.Text += lines[i] + "\n";
                             }
