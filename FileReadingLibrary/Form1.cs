@@ -13,6 +13,7 @@ namespace FileReadingLibrary
 {
     public partial class Form1 : Form
     {
+        const int MAX_XML_LINE = 5;
         public Form1()
         {
             InitializeComponent();
@@ -32,7 +33,22 @@ namespace FileReadingLibrary
         {
             try
             {
-                if (Encrypted.Checked)
+                if (RoleBasedSecurityContext.Checked)
+                {
+                    using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "XML Documents|*.xml", Multiselect = false, ValidateNames = true })
+                    {
+                        if (ofd.ShowDialog() == DialogResult.OK)
+                        {
+                            Output.Text = string.Empty;
+                            string[] lines = File.ReadAllLines(ofd.FileName);
+                            for (int i = 0; i < MAX_XML_LINE; i++)
+                            {
+                                Output.Text += lines[i] + "\n";
+                            }
+                        }
+                    }
+                }
+                else if (Encrypted.Checked)
                 {
                     using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Text Documents|*.txt", Multiselect = false, ValidateNames = true })
                     {
@@ -69,6 +85,20 @@ namespace FileReadingLibrary
             }
         }
 
+        private void Encrypted_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Encrypted.Checked)
+            {
+                RoleBasedSecurityContext.Checked = false;
+            }
+        }
 
+        private void RoleBasedSecurityContext_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RoleBasedSecurityContext.Checked)
+            {
+                Encrypted.Checked = false;
+            }
+        }
     }
 }

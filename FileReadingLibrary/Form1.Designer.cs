@@ -31,6 +31,7 @@
             this.OpenFile = new System.Windows.Forms.Button();
             this.Output = new System.Windows.Forms.RichTextBox();
             this.Encrypted = new System.Windows.Forms.CheckBox();
+            this.RoleBasedSecurityContext = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // OpenFile
@@ -61,12 +62,26 @@
             this.Encrypted.TabIndex = 3;
             this.Encrypted.Text = "Encrypted";
             this.Encrypted.UseVisualStyleBackColor = true;
+            this.Encrypted.CheckedChanged += new System.EventHandler(this.Encrypted_CheckedChanged);
+            // 
+            // RoleBasedSecurityContext
+            // 
+            this.RoleBasedSecurityContext.AutoSize = true;
+            this.RoleBasedSecurityContext.Location = new System.Drawing.Point(240, 16);
+            this.RoleBasedSecurityContext.Name = "RoleBasedSecurityContext";
+            this.RoleBasedSecurityContext.Size = new System.Drawing.Size(161, 17);
+            this.RoleBasedSecurityContext.TabIndex = 4;
+            this.RoleBasedSecurityContext.Text = "Role Based Security Context";
+            this.RoleBasedSecurityContext.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.RoleBasedSecurityContext.UseVisualStyleBackColor = true;
+            this.RoleBasedSecurityContext.CheckedChanged += new System.EventHandler(this.RoleBasedSecurityContext_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.RoleBasedSecurityContext);
             this.Controls.Add(this.Encrypted);
             this.Controls.Add(this.Output);
             this.Controls.Add(this.OpenFile);
@@ -82,6 +97,7 @@
         private System.Windows.Forms.Button OpenFile;
         private System.Windows.Forms.RichTextBox Output;
         private System.Windows.Forms.CheckBox Encrypted;
+        private System.Windows.Forms.CheckBox RoleBasedSecurityContext;
     }
 }
 
