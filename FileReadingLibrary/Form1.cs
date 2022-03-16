@@ -50,7 +50,7 @@ namespace FileReadingLibrary
                 }
                 else if (Encrypted.Checked)
                 {
-                    using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Text Documents|*.txt", Multiselect = false, ValidateNames = true })
+                    using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Text Documents|*.txt|XML Documents|*.xml", Multiselect = false, ValidateNames = true })
                     {
                         if (ofd.ShowDialog() == DialogResult.OK)
                         {
