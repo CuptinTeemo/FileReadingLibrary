@@ -18,18 +18,47 @@ namespace FileReadingLibrary
             InitializeComponent();
         }
 
+        public static string Reverse(string Input)
+        {
+            char[] charArray = Input.ToCharArray();
+            string reversedString = String.Empty;
+            for (int i = charArray.Length - 1; i > -1; i--)
+            {
+                reversedString += charArray[i];
+            }
+            return reversedString;
+        }
         private async void OpenFileEvent(object sender, EventArgs e)
         {
             try
             {
-                //Open file dialog, allows you to select a txt file
-                using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Text Documents|*.txt|XML Documents|*.xml", Multiselect = false, ValidateNames = true })
+                if (Encrypted.Checked)
                 {
-                    if (ofd.ShowDialog() == DialogResult.OK)
+                    using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Text Documents|*.txt", Multiselect = false, ValidateNames = true })
                     {
-                        using (StreamReader sr = new StreamReader(ofd.FileName))
+                        if (ofd.ShowDialog() == DialogResult.OK)
                         {
-                            Output.Text = await sr.ReadToEndAsync();
+                            Output.Text = string.Empty;
+                            string[] lines = File.ReadAllLines(ofd.FileName);
+                            for (int i = 0; i < lines.Length; i++)
+                            {
+                                Output.Text += Reverse(lines[i])+ "\n";
+                            }
+
+                        }
+                    }
+                }
+                else
+                {
+                    using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Text Documents|*.txt|XML Documents|*.xml", Multiselect = false, ValidateNames = true })
+                    {
+                        if (ofd.ShowDialog() == DialogResult.OK)
+                        {
+                            using (StreamReader sr = new StreamReader(ofd.FileName))
+                            {
+                                Output.Text = await sr.ReadToEndAsync();
+                            }
+                            
                         }
                     }
                 }
@@ -39,5 +68,7 @@ namespace FileReadingLibrary
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
     }
 }
