@@ -23,7 +23,7 @@ namespace FileReadingLibrary
             try
             {
                 //Open file dialog, allows you to select a txt file
-                using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Text Documents|*.txt", Multiselect = false, ValidateNames = true })
+                using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Text Documents|*.txt|XML Documents|*.xml", Multiselect = false, ValidateNames = true })
                 {
                     if (ofd.ShowDialog() == DialogResult.OK)
                     {
